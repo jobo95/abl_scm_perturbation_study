@@ -51,20 +51,20 @@ def define_stoch_stab_function_param_Lambda(Ri):
     lambda_2 = 0.9088
     lambda_3 = 0.0738
     lambda_4 = 8.3220
-    return lambda_1 * np.tanh(lambda_2 * np.log(Ri) - lambda_3) + lambda_4
+    return lambda_1 * np.tanh(lambda_2 * np.log10(Ri) - lambda_3) + lambda_4
 
 
 def define_stoch_stab_function_param_Upsilon(Ri):
     upsilon_1 = 0.4294
     upsilon_2 = 0.1749
-    return 10 ** (upsilon_1 * np.log(Ri) + upsilon_2)
+    return 10 ** (upsilon_1 * np.log10(Ri) + upsilon_2)
 
 
 def define_stoch_stab_function_param_Sigma(Ri, sigma_s=0.0):
     sigma_1 = 0.8069
     sigma_2 = 0.6044
-    sigma_3 = 0.8368
-    return 10 ** (sigma_1 * np.tanh(sigma_2 * np.log(Ri) - sigma_3) + sigma_s)
+    sigma_3 = -0.8368 # wrong documentation in Boyko and Vercauteren 2023!
+    return 10 ** (sigma_1 * np.tanh(sigma_2 * np.log10(Ri) - sigma_3) + sigma_s)
 
 
 def initialize_SDEsolver(params):
